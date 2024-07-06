@@ -1,0 +1,92 @@
+{
+  "day": "1",
+  "workout": [
+    {
+      "exercise": "press bank",
+      "weight": "50",
+      "reps": "10",
+      "sets": "3"
+    },
+    {
+      "exercise": "squats",
+      "weight": "50",
+      "reps": "12",
+      "sets": "3"
+    },
+    {
+      "exercise": "deadlift",
+      "weight": "50",
+      "reps": "8",
+      "sets": "5"
+    }
+  ]
+},
+{
+  "day": "2",
+  "workout": [
+    {
+      "exercise": "bench press",
+      "weight": "55",
+      "reps": "10",
+      "sets": "3"
+    },
+    {
+      "exercise": "leg press",
+      "weight": "60",
+      "reps": "12",
+      "sets": "3"
+    },
+    {
+      "exercise": "pull-ups",
+      "weight": "bodyweight",
+      "reps": "10",
+      "sets": "4"
+    }
+  ]
+},
+{
+  "day": "3",
+  "workout": [
+    {
+      "exercise": "overhead press",
+      "weight": "45",
+      "reps": "10",
+      "sets": "3"
+    },
+    {
+      "exercise": "lunges",
+      "weight": "40",
+      "reps": "12",
+      "sets": "3"
+    },
+    {
+      "exercise": "bent-over rows",
+      "weight": "50",
+      "reps": "10",
+      "sets": "4"
+    }
+  ]
+},
+{
+  "day": "4",
+  "workout": [
+    {
+      "exercise": "incline bench press",
+      "weight": "50",
+      "reps": "10",
+      "sets": "3"
+    },
+    {
+      "exercise": "deadlift",
+      "weight": "60",
+      "reps": "8",
+      "sets": "5"
+    },
+    {
+      "exercise": "dips",
+      "weight": "bodyweight",
+      "reps": "12",
+      "sets": "4"
+    }
+  ]
+}

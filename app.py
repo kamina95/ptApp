@@ -40,10 +40,9 @@ def get_user_data(user_id):
     return None
 
 
-@app.route('/registration', methods=['POST'])
+@app.route('/register', methods=['POST'])
 def registration():
     data = request.json
-    user_id = data.get('user_id')
     name = data.get('name')
     age = data.get('age')
     gender = data.get('gender')
@@ -57,7 +56,6 @@ def registration():
     email = data.get('email')
 
     user_data = {
-        "id": user_id,
         "name": name,
         "age": age,
         "gender" : gender,
