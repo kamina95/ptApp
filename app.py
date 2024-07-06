@@ -40,43 +40,11 @@ def get_user_data(user_id):
     return None
 
 
-
-It seems that the response from OpenAI is being interpreted as a string, which includes newline characters and other formatting details that should be part of the JSON. Let's make sure we are correctly parsing the response JSON string returned from OpenAI.
-
-Updated Code
-Here is the updated code to handle the JSON response properly:
-
-python
-Copy code
-import os
-import json
-from flask import Flask, request, jsonify
-from dotenv import load_dotenv
-import openai
-
-# Load environment variables from .env file
-load_dotenv()
-
-app = Flask(__name__)
-
-DATA_FILE = 'data_test.json'
-
-# Set up OpenAI
-openai.api_key = os.getenv('OPENAI_API_KEY')
-
-def call_openai(content):
-    response = openai.Completion.create(
-        engine="davinci",
-        prompt=content,
-        max_tokens=150
-    )
-    return response.choices[0].text.strip()
-
 @app.route('/input_data', methods=['POST'])
 def input_data():
     data = request.json
     content = data.get('content')
-    response = call_openai(content)
+    response = openai_call.call_openai(content)
 
     # Load existing data from JSON file
     if os.path.exists(DATA_FILE):
@@ -120,20 +88,12 @@ def get_all_responses():
     # Extract and merge all responses into one JSON object
     all_responses = []
     for entry in existing_data:
-        all_responses.extend(entry['response'])
+        if isinstance(entry['response'], list):
+            all_responses.extend(entry['response'])
+        else:
+            return jsonify({"error": "Invalid response format in stored data"}), 500
 
     return jsonify(all_responses), 200
-
-
-# @app.route('/input_data', methods=['POST'])
-# def input_data():
-#     data = request.json
-#     content = data.get('content')
-#     response = openai_call.call_openai(content)
-#     json.dump(response, open('data_test.json', 'w'))
-#     json.update(response)
-#     print(response)
-#     return jsonify({"message": "Data added successfully"}), 200
 
 
 @app.route('/add_workout', methods=['POST'])
