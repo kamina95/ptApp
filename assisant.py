@@ -19,7 +19,7 @@ def create_instructions_from_md(path):
 # Step 1: Create an Assistant
 my_assistant = client.beta.assistants.create(
     model="gpt-4o",
-    instructions=create_instructions_from_md("instructions.md"),
+    instructions=create_instructions_from_md("data-input-assistant-instructions.txt"),
     name="Input Exercise Assistant",
     tools=[{"type": "code_interpreter"}]
 )

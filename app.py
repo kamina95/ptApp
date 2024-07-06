@@ -10,7 +10,7 @@ load_dotenv()  # Load environment variables from .env file
 
 app = Flask(__name__)
 
-DATA_FILE = 'data.json'
+DATA_FILE = 'data_test.json'
 
 
 # Load data from JSON file
@@ -39,14 +39,42 @@ def get_user_data(user_id):
             return user
     return None
 
-
 @app.route('/input_data', methods=['POST'])
 def input_data():
     data = request.json
     content = data.get('content')
     response = openai_call.call_openai(content)
-    json.dump(response, open('data_test.json', 'w'))
+
+    # Load existing data from JSON file
+    if os.path.exists(DATA_FILE):
+        with open(DATA_FILE, 'r') as f:
+            existing_data = json.load(f)
+    else:
+        existing_data = []
+
+    # Ensure the existing data is a list
+    if not isinstance(existing_data, list):
+        existing_data = []
+
+    # Append the new response to the existing data
+    existing_data.append({"content": content, "response": response})
+
+    # Save the updated data back to the JSON file
+    with open(DATA_FILE, 'w') as f:
+        json.dump(existing_data, f, indent=4)
+
+    print(response)
     return jsonify({"message": "Data added successfully"}), 200
+
+# @app.route('/input_data', methods=['POST'])
+# def input_data():
+#     data = request.json
+#     content = data.get('content')
+#     response = openai_call.call_openai(content)
+#     json.dump(response, open('data_test.json', 'w'))
+#     json.update(response)
+#     print(response)
+#     return jsonify({"message": "Data added successfully"}), 200
 
 
 @app.route('/add_workout', methods=['POST'])
