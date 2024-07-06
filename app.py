@@ -39,11 +39,44 @@ def get_user_data(user_id):
             return user
     return None
 
+
+
+It seems that the response from OpenAI is being interpreted as a string, which includes newline characters and other formatting details that should be part of the JSON. Let's make sure we are correctly parsing the response JSON string returned from OpenAI.
+
+Updated Code
+Here is the updated code to handle the JSON response properly:
+
+python
+Copy code
+import os
+import json
+from flask import Flask, request, jsonify
+from dotenv import load_dotenv
+import openai
+
+# Load environment variables from .env file
+load_dotenv()
+
+app = Flask(__name__)
+
+DATA_FILE = 'data_test.json'
+
+# Set up OpenAI
+openai.api_key = os.getenv('OPENAI_API_KEY')
+
+def call_openai(content):
+    response = openai.Completion.create(
+        engine="davinci",
+        prompt=content,
+        max_tokens=150
+    )
+    return response.choices[0].text.strip()
+
 @app.route('/input_data', methods=['POST'])
 def input_data():
     data = request.json
     content = data.get('content')
-    response = openai_call.call_openai(content)
+    response = call_openai(content)
 
     # Load existing data from JSON file
     if os.path.exists(DATA_FILE):
@@ -57,7 +90,16 @@ def input_data():
         existing_data = []
 
     # Append the new response to the existing data
-    existing_data.append({"content": content, "response": response})
+    try:
+        response_json = json.loads(response)
+    except json.JSONDecodeError:
+        return jsonify({"error": "Invalid JSON format in the response"}), 400
+
+    new_entry = {
+        "content": content,
+        "response": response_json  # Ensure the response is parsed from string to JSON
+    }
+    existing_data.append(new_entry)
 
     # Save the updated data back to the JSON file
     with open(DATA_FILE, 'w') as f:
@@ -65,6 +107,23 @@ def input_data():
 
     print(response)
     return jsonify({"message": "Data added successfully"}), 200
+
+@app.route('/get_all_responses', methods=['GET'])
+def get_all_responses():
+    # Load existing data from JSON file
+    if os.path.exists(DATA_FILE):
+        with open(DATA_FILE, 'r') as f:
+            existing_data = json.load(f)
+    else:
+        existing_data = []
+
+    # Extract and merge all responses into one JSON object
+    all_responses = []
+    for entry in existing_data:
+        all_responses.extend(entry['response'])
+
+    return jsonify(all_responses), 200
+
 
 # @app.route('/input_data', methods=['POST'])
 # def input_data():
