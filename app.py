@@ -40,18 +40,39 @@ def get_user_data(user_id):
     return None
 
 
-# @app.route('/onboarding', methods=['POST'])
-# def post_user_data():
-#     data = request.json
-#     return jsonify({"message": "User data saved successfully"}), 200
-#
-#
-# @app.route('/generate_workout', methods=['POST'])
-# def generate_workout():
-#     data = request.json
-#     workout_description = data.get('workout_description')
-#
-#     return jsonify({"workout": workout}), 200
+@app.route('/registration', methods=['POST'])
+def registration():
+    data = request.json
+    user_id = data.get('user_id')
+    name = data.get('name')
+    age = data.get('age')
+    gender = data.get('gender')
+    height = data.get('height')
+    weight = data.get('weight')
+    fat_percentage = data.get('fat_percentage')
+    fitness_goals = data.get('fitness_goals')
+    current_fitness_level = data.get('current_fitness_level')
+    workout_preferences = data.get('workout_preferences')
+    dietary_preferences = data.get('dietary_preferences')
+    email = data.get('email')
+
+    user_data = {
+        "id": user_id,
+        "name": name,
+        "age": age,
+        "gender" : gender,
+        "height" : height,
+        "weight" : weight,
+        "fat_percentage" : fat_percentage,
+        "fitness_goals" : fitness_goals,
+        "current_fitness_level" : current_fitness_level,
+        "workout_preferences" : workout_preferences,
+        "dietary_preferences" : dietary_preferences,
+        "email" : email
+    }
+    with open("user_data.json", 'w') as f:
+        json.dump(user_data, f, indent=4)
+    return jsonify({"message": "User registered successfully"}), 200
 
 
 @app.route('/input_data', methods=['POST'])

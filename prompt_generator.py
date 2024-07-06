@@ -35,7 +35,7 @@ def get_user_data():
     return existing_data
 
 def generate_prompt(user_prompt):
-    prompt = "";
+    prompt = ""
     exercises = get_all_exercises()
     user_data = get_user_data()
 
