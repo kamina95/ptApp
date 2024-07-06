@@ -40,6 +40,20 @@ def get_user_data(user_id):
     return None
 
 
+# @app.route('/onboarding', methods=['POST'])
+# def post_user_data():
+#     data = request.json
+#     return jsonify({"message": "User data saved successfully"}), 200
+#
+#
+# @app.route('/generate_workout', methods=['POST'])
+# def generate_workout():
+#     data = request.json
+#     workout_description = data.get('workout_description')
+#
+#     return jsonify({"workout": workout}), 200
+
+
 @app.route('/input_data', methods=['POST'])
 def input_data():
     data = request.json
@@ -75,6 +89,7 @@ def input_data():
 
     print(response)
     return jsonify({"message": "Data added successfully"}), 200
+
 
 @app.route('/get_all_responses', methods=['GET'])
 def get_all_responses():

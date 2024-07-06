@@ -16,17 +16,33 @@ def create_instructions_from_md(path):
     return instruction_path.read_text()
 
 
-# Step 1: Create an Assistant
-my_assistant = client.beta.assistants.create(
-    model="gpt-4o",
-    instructions=create_instructions_from_md("data-input-assistant-instructions.txt"),
-    name="Input Exercise Assistant",
-    tools=[{"type": "code_interpreter"}]
-)
-print(f"This is the assistant object: {my_assistant} \n")
+def create_input_assistant():
+    my_assistant = client.beta.assistants.create(
+        model="gpt-4o",
+        instructions=create_instructions_from_md("data-input-assistant-instructions.txt"),
+        name="Input Exercise Assistant",
+        tools=[{"type": "code_interpreter"}]
+    )
+    print(f"This is the assistant object: {my_assistant} \n")
 
-assistants_id = {
-    "id": my_assistant.id
-}
+    assistants_id = {
+        "id": my_assistant.id
+    }
 
-json.dump(assistants_id, open('data.json', 'w'))
+    json.dump(assistants_id, open('data.json', 'w'))
+
+
+def create_workout_generator_assistant():
+    my_assistant = client.beta.assistants.create(
+        model="gpt-4o",
+        instructions=create_instructions_from_md(""),
+        name="Workout generator Assistant",
+        tools=[{"type": "code_interpreter"}]
+    )
+    print(f"This is the assistant object: {my_assistant} \n")
+
+    assistants_id = {
+        "id": my_assistant.id
+    }
+
+    json.dump(assistants_id, open('assistant-workout.json', 'w'))
