@@ -10,6 +10,7 @@ app = Flask(__name__)
 
 DATA_FILE = 'data.json'
 
+
 # Load data from JSON file
 def load_data():
     if not os.path.exists(DATA_FILE):
@@ -17,13 +18,16 @@ def load_data():
     with open(DATA_FILE, 'r') as f:
         return json.load(f)
 
+
 # Save data to JSON file
 def save_data(data):
     with open(DATA_FILE, 'w') as f:
         json.dump(data, f, indent=4)
 
+
 # Set up OpenAI
 openai.api_key = os.getenv('OPENAI_API_KEY')
+
 
 # Helper function to fetch user data
 def get_user_data(user_id):
@@ -32,6 +36,7 @@ def get_user_data(user_id):
         if user["id"] == user_id:
             return user
     return None
+
 
 @app.route('/add_workout', methods=['POST'])
 def add_workout():
@@ -49,6 +54,7 @@ def add_workout():
     user["workouts"].append(workout)
     save_data(data_file)
     return jsonify({"message": "Workout added successfully"}), 200
+
 
 @app.route('/get_recommendation/<user_id>', methods=['GET'])
 def get_recommendation(user_id):
@@ -70,6 +76,7 @@ def get_recommendation(user_id):
 
     recommendation = response.choices[0].text.strip()
     return jsonify({"recommendation": recommendation}), 200
+
 
 if __name__ == '__main__':
     app.run(debug=True)
