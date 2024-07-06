@@ -5,6 +5,7 @@ import json
 from dotenv import load_dotenv
 
 import openai_call
+import prompt_generator
 
 load_dotenv()  # Load environment variables from .env file
 
@@ -40,10 +41,19 @@ def get_user_data(user_id):
     return None
 
 
-@app.route('/send_workout', methods=['GET'])
+@app.route('/get_workout', methods=['GET'])
 def send_workout():
-    prompt_workout = openai_call.call_openai("")
-    return jsonify({"message": "Workout sent successfully"}), 200
+    prompt_workout = prompt_generator.generate_prompt("")
+    workout = openai_call.call_openai_workout(prompt_workout)
+    # Remove the backticks and the surrounding json tag
+    json_string = workout.replace("```json\n", "").replace("\n```", "")
+
+    # Convert the JSON string to a Python object
+    workout_data = json.loads(json_string)
+
+    # Pretty-print the JSON data
+    pretty_json = json.dumps(workout_data, indent=2)
+    return jsonify(pretty_json), 200
 
 
 @app.route('/register', methods=['POST'])

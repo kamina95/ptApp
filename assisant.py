@@ -35,7 +35,7 @@ def create_input_assistant():
 def create_workout_generator_assistant():
     my_assistant = client.beta.assistants.create(
         model="gpt-4o",
-        instructions=create_instructions_from_md(""),
+        instructions=create_instructions_from_md("workout-plan-creation-prompt.txt"),
         name="Workout generator Assistant",
         tools=[{"type": "code_interpreter"}]
     )
@@ -46,3 +46,6 @@ def create_workout_generator_assistant():
     }
 
     json.dump(assistants_id, open('assistant-workout.json', 'w'))
+
+
+create_workout_generator_assistant()
