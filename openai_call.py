@@ -27,7 +27,7 @@ def call_openai(content):
     my_thread_message = client.beta.threads.messages.create(
         thread_id=my_thread.id,
         role="user",
-        content=content,
+        content=content
     )
     print(f"This is the message object: {my_thread_message} \n")
 
@@ -58,7 +58,7 @@ def call_openai(content):
 
             print(f"User: {my_thread_message.content[0].text.value}")
             print(f"Assistant: {all_messages.data[0].content[0].text.value}")
-
+            return all_messages.data[0].content[0].text.value
             break
         elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
             pass

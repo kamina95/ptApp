@@ -4,6 +4,8 @@ import os
 import json
 from dotenv import load_dotenv
 
+import openai_call
+
 load_dotenv()  # Load environment variables from .env file
 
 app = Flask(__name__)
@@ -36,6 +38,15 @@ def get_user_data(user_id):
         if user["id"] == user_id:
             return user
     return None
+
+
+@app.route('/input_data', methods=['POST'])
+def input_data():
+    data = request.json
+    content = data.get('content')
+    response = openai_call.call_openai(content)
+    json.dump(response, open('data_test.json', 'w'))
+    return jsonify({"message": "Data added successfully"}), 200
 
 
 @app.route('/add_workout', methods=['POST'])
