@@ -40,6 +40,12 @@ def get_user_data(user_id):
     return None
 
 
+@app.route('/send_workout', methods=['GET'])
+def send_workout():
+    prompt_workout = openai_call.call_openai("")
+    return jsonify({"message": "Workout sent successfully"}), 200
+
+
 @app.route('/register', methods=['POST'])
 def registration():
     data = request.json
