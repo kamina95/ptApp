@@ -50,7 +50,14 @@ def send_workout():
     print(workout)
     # Remove the backticks and the surrounding json tag
     json_string = workout.replace("```json\n", "").replace("\n```", "")
-    print(json_string)
+    # start_marker = "```json"
+    # end_marker = "```"
+    #
+    # start_index = workout.find(start_marker) + len(start_marker) + 1
+    # end_index = workout.find(end_marker)
+    #
+    # extracted_text = workout[start_index:end_index].strip()
+    # print(extracted_text)
     # Convert the JSON string to a Python object
     # workout_data = json.loads(json_string)
     # print(workout_data)

@@ -4,7 +4,7 @@ import os
 from flask import jsonify
 
 DATA_FILE = 'data_test.json'
-DATA_USER_FILE = 'data_user.json'
+DATA_USER_FILE = 'user_data.json'
 
 
 def get_all_exercises():
@@ -30,6 +30,7 @@ def get_user_data():
     if os.path.exists(DATA_USER_FILE):
         with open(DATA_USER_FILE, 'r') as f:
             existing_data = json.load(f)
+            print("is heree")
     else:
         existing_data = []
     return existing_data
