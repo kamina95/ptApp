@@ -34,13 +34,13 @@ Output:
     "day": "[day number]",
     "workout": [
       {
-        "exercise": "[exercise name]",
+        "exercise": "[exercise name or rest day]",
         "weight": "[weight in kg or bodyweight]",
         "reps": [number of repetitions],
         "sets": [number of sets]
       },
       {
-        "exercise": "[exercise name]",
+        "exercise": "[exercise name or rest day]",
         "weight": "[weight in kg or bodyweight]",
         "reps": [number of repetitions],
         "sets": [number of sets]
@@ -52,13 +52,13 @@ Output:
     "day": "[day number]",
     "workout": [
       {
-        "exercise": "[exercise name]",
+        "exercise": "[exercise name or rest day]",
         "weight": "[weight in kg or bodyweight]",
         "reps": [number of repetitions],
         "sets": [number of sets]
       },
       {
-        "exercise": "[exercise name]",
+        "exercise": "[exercise name or rest day]",
         "weight": "[weight in kg or bodyweight]",
         "reps": [number of repetitions],
         "sets": [number of sets]
