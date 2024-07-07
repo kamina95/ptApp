@@ -37,7 +37,7 @@ def get_user_data():
 
 def generate_prompt(user_prompt):
     user_data = get_user_data()
-    prompt = "Make me a routine of three days, this are the data of the user: \n"
+    prompt = "Make me a routine, this are the data of the user: \n"
     prompt += f"User: {user_data} \n"
     prompt += "Recommend a new workout routine."
     exercises = get_all_exercises()
