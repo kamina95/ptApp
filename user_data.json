@@ -1,19 +1,13 @@
 {
-  "userBioMetrics": {
-    "age": "31",
-    "gender": "male",
-    "height": 182,
-    "weight": 80
-  },
-  "fitnessGoals": {
-    "primaryGoal": "Improve muscle mass and strength",
-    "secondaryGoal": "Lose weight"
-  },
-  "currentFitnessLevel": "Intermediate",
-  "workoutPreferences": {
-    "schedule": "3-4 days per week"
-  },
-  "dietaryPreferences": {
-    "macronutrients": "none"
-  }
+    "name": "Jesus",
+    "age": "41",
+    "gender": "Male",
+    "height": "173",
+    "weight": "70",
+    "fat_percentage": "18",
+    "fitness_goals": "I want to increase lenght strenght",
+    "current_fitness_level": "I have a mid fitness level",
+    "workout_preferences": "I want trainings to be 1h30m long",
+    "dietary_preferences": "none",
+    "email": "jesus@mail.com"
 }

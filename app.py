@@ -75,11 +75,11 @@ def registration():
     gender = data.get('gender')
     height = data.get('height')
     weight = data.get('weight')
-    fat_percentage = data.get('fat_percentage')
-    fitness_goals = data.get('fitness_goals')
-    current_fitness_level = data.get('current_fitness_level')
-    workout_preferences = data.get('workout_preferences')
-    dietary_preferences = data.get('dietary_preferences')
+    fat_percentage = data.get('fatPercentage')
+    fitness_goals = data.get('fitnessGoals')
+    current_fitness_level = data.get('currentFitnessLevel')
+    workout_preferences = data.get('workoutPreferences')
+    dietary_preferences = data.get('dietaryPreferences')
     email = data.get('email')
 
     user_data = {
