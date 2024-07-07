@@ -3,6 +3,7 @@ import openai
 import os
 import json
 from dotenv import load_dotenv
+from flask_cors import CORS
 
 import openai_call
 import prompt_generator
@@ -10,6 +11,7 @@ import prompt_generator
 load_dotenv()  # Load environment variables from .env file
 
 app = Flask(__name__)
+CORS(app)
 
 DATA_FILE = 'data_test.json'
 
