@@ -49,3 +49,4 @@ def create_workout_generator_assistant():
 
 
 create_workout_generator_assistant()
+create_input_assistant()
