@@ -45,15 +45,17 @@ def get_user_data(user_id):
 def send_workout():
     prompt_workout = prompt_generator.generate_prompt("")
     workout = openai_call.call_openai_workout(prompt_workout)
+    print(workout)
     # Remove the backticks and the surrounding json tag
     json_string = workout.replace("```json\n", "").replace("\n```", "")
-
+    print(json_string)
     # Convert the JSON string to a Python object
-    workout_data = json.loads(json_string)
-
+    # workout_data = json.loads(json_string)
+    # print(workout_data)
     # Pretty-print the JSON data
-    pretty_json = json.dumps(workout_data, indent=2)
-    return jsonify(pretty_json), 200
+    # pretty_json = json.dumps(json_string, indent=2)
+    # printt(pretty_json)
+    return json_string, 200
 
 
 @app.route('/register', methods=['POST'])
